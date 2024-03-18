@@ -1,3 +1,12 @@
+const Player = (name, marker) => {
+    const getName = () => name;
+    const getMarker = () => marker; 
+    return {
+      getName,
+      getMarker
+    };
+};
+
 const Gameboard = (() => {
     let board;
   

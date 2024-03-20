@@ -12,6 +12,12 @@
     font-family: "Lacquer", sans-serif;
 }
 
+h1 {
+    text-align: center;
+    font-size: 3rem;
+    margin: 2rem 0;
+}
+
 .header {
     display: flex;
     justify-content: center;
@@ -20,6 +26,7 @@
 }
 
 .board {
+    margin: 2rem 0;
     width: 100vw;
     height: 50vh;
     display: grid;
@@ -32,7 +39,6 @@
     width: 100px;
     height: 100px;
     border: 2px solid black;
-    cursor: pointer;
     font-size: 90px;
     text-align: center;
 }
@@ -55,6 +61,16 @@
 .cell:nth-child(8),
 .cell:nth-child(7) {
     border-bottom: none;
+}
+
+.free:hover {
+    cursor: pointer;
+    background-color: blue;
+}
+
+.occupied:hover {
+    cursor: not-allowed;
+    background-color: brown;
 }
 
 #playerturn {

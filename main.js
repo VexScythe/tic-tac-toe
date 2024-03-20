@@ -64,7 +64,11 @@ const GameState = (() => {
     Gameboard.resetBoard();
     board = Gameboard.getBoard();
     gameIsOver = false;
-    cells.forEach(cell => cell.textContent = "");
+    cells.forEach(cell => {
+      cell.classList.remove("occupied");
+      cell.classList.add("free");
+      cell.textContent = ""
+    });
     endScreen.style.display = "none";
   });
 
@@ -75,9 +79,10 @@ const GameState = (() => {
       cell.addEventListener('click', () => {
         if(!gameIsOver && cell.textContent === ""){
           cell.textContent = `${currentPlayer.marker}`;
-          console.log(currentPlayer.marker);
+          cell.classList.remove("free");
+          cell.classList.add("occupied");
           playMove(index);
-        } else console.log("cell occupied")
+        }
       });
     });
   };

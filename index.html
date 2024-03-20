@@ -11,11 +11,15 @@
 </head>
 <body>
     <div class="page">
-        <h1>Tic Tac Toe</h1>
+        <div class="title">
+          <h1 class="tic">TIC</h1>
+          <h1 class="tac">TAC</h1>
+          <h1 class="toe">TOE</h1>
+        </div>
         <div class="header">
-          <p>X: <input type="text" id="player1"></p>
-          <p>O: <input type="text" id="player2"></p>
-          <button id="startgame" type="submit">START</button>
+          <div class="input1"><p>X: <input type="text" id="player1"></p></div>
+          <div class="input2"><p>O: <input type="text" id="player2"></p></div>
+          <button class="btn" id="startgame" type="submit">START</button>
         </div>
         <div class="board">
           <div class="cell free" data-index="0"></div>
@@ -28,7 +32,7 @@
           <div class="cell free" data-index="7"></div>
           <div class="cell free" data-index="8"></div>
         </div>
-        <div id="playerturn"></div>
+        <div id="playerturn">Choose your Names and press Start</div>
 
         <div class="displaywinner">
           <p class="winner"></p>

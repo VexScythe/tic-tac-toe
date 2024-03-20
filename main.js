@@ -12,10 +12,8 @@ const Gameboard = (() => {
     const placeMarker = (index, marker) => {
       if (board[index] === "") {
         board[index] = marker;
-        console.log(getBoard())
         return true;
       } else {
-        console.log(getBoard())
         return false;
       }
     };

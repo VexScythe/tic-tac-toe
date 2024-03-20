@@ -7,15 +7,36 @@
     src: url('./font/Lacquer-Regular.ttf') format('truetype');
 }
 
+:root {
+    --border-radius: 4px;
+}
+
 .page {
     margin: 0;
     font-family: "Lacquer", sans-serif;
+    background-color: #2d3033;
+    width: 100vw;
+    height: 100vh;
 }
 
-h1 {
-    text-align: center;
-    font-size: 3rem;
-    margin: 2rem 0;
+.title {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    font-size: 4rem;
+    padding: 2rem 0;
+}
+
+.tic {
+    color: #e04e22;
+}
+
+.tac {
+    color: #49b830;
+}
+
+.toe {
+    color: #3062b8;
 }
 
 .header {
@@ -23,6 +44,22 @@ h1 {
     justify-content: center;
     align-items: center;
     gap: 2em;
+}
+
+.input1,
+.input2 {
+    color: #d0d4db;
+    font-size: 1.5rem;
+}
+
+input {
+    outline: none;
+    border: 1px solid #d0d4db;
+    border-radius: var(--border-radius);
+    background-color: #2d3033;
+    color: #d0d4db;
+    padding: .3rem;
+    font-family: Trebuchet MS,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Tahoma,sans-serif;
 }
 
 .board {
@@ -41,6 +78,7 @@ h1 {
     border: 2px solid black;
     font-size: 90px;
     text-align: center;
+    color: #d0d4db;
 }
 
 .cell:first-child,
@@ -65,15 +103,16 @@ h1 {
 
 .free:hover {
     cursor: pointer;
-    background-color: blue;
+    background-color: #49b830;
 }
 
 .occupied:hover {
     cursor: not-allowed;
-    background-color: brown;
+    background-color: #e04e22;
 }
 
 #playerturn {
+    color: #d0d4db;
     margin-top: 1rem;
     height: 1.5rem;
     text-align: center;
@@ -81,17 +120,30 @@ h1 {
 }
 
 .displaywinner {
-    background-color: rgba(20, 120, 45, .9);
+    background-color: rgba(48, 98, 184, .9);
     position: absolute;
     width: 100vw;
     height: 100vh;
     top: 0;
     left: 0;
-    z-index: 10;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     font-size: 3rem;
     display: none;
+    gap: 3rem;
+}
+
+.btn {
+    outline: none;
+    cursor: pointer;
+    border: 1px solid #d0d4db;
+    border-radius: var(--border-radius);
+    padding: .4rem;
+    background-color: #2d3033;
+    color: #d0d4db;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-family: Trebuchet MS,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Tahoma,sans-serif;
 }

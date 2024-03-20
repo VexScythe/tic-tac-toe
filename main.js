@@ -30,12 +30,18 @@ const Gameboard = (() => {
 })();
 
 const GameState = (() => {
-  let currentPlayer;
+  let currentPlayer,
+      gameIsOver = false;
   
   const player1Name = document.querySelector("#player1");
   const player2Name = document.querySelector("#player2");
   const startBtn = document.querySelector("#startgame");
   const cells = document.querySelectorAll('.cell');
+  const playerTurn = document.getElementById("playerturn");
+  const endScreen = document.querySelector(".displaywinner");
+  const displayWinner = document.querySelector(".winner");
+  const playAgainBtn = document.getElementById("playagain");
+  const startNewBtn = document.getElementById("startnew");
 
   const WINNING_COMBINATIONS = [
     [0, 1, 2], [3, 4, 5], [6, 7, 8],
@@ -53,17 +59,23 @@ const GameState = (() => {
 
   const startGame = () => {
     currentPlayer = playerOne;
+    playerTurn.textContent = `It's ${playerOne.name} turn`
     cells.forEach((cell, index) => {
       cell.addEventListener('click', () => {
-        cell.textContent = `${currentPlayer.marker}`;
-        console.log(currentPlayer.marker);
-        playMove(index);
+        if(!gameIsOver && cell.textContent === ""){
+          cell.textContent = `${currentPlayer.marker}`;
+          console.log(currentPlayer.marker);
+          playMove(index);
+        } else console.log("cell occupied")
       });
-    };
+    });
   };
 
   const switchPlayer = () => {
     currentPlayer = currentPlayer.marker === 'X' ? playerTwo : playerOne;
+    if(currentPlayer.marker === "X"){
+      playerTurn.textContent = `It's ${playerOne.name} turn`
+    } else playerTurn.textContent = `It's ${playerTwo.name} turn`
   };
 
   const checkWinner = () => {
@@ -71,11 +83,14 @@ const GameState = (() => {
     for (let combination of WINNING_COMBINATIONS) {
       const [a, b, c] = combination;
       if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+        gameIsOver = true;
+        endScreen.style.display = "flex";
         return currentPlayer; 
       }
     }
 
     if (board.every(cell => cell !== '')) {
+      endScreen.style.display = "flex";
       return 'tie'; 
     }
 
@@ -86,7 +101,7 @@ const GameState = (() => {
     if (Gameboard.placeMarker(index, currentPlayer.marker)) {
       const winner = checkWinner();
       if (winner) {
-        console.log(winner === 'tie' ? 'It\'s a tie!' : `${winner.name} wins!`);
+        displayWinner.textContent = (winner === 'tie' ? 'It\'s a tie!' : `${winner.name} wins!`);
       } else {
         switchPlayer();
       }

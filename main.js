@@ -1,5 +1,7 @@
 const Player = (name, marker) => {
-    return { name, marker };
+    const changeName = () => this.name = name;
+
+    return { name, marker, changeName };
 };
 
 const Gameboard = (() => {
@@ -33,6 +35,8 @@ const GameState = (() => {
   let currentPlayer,
       gameIsOver = false;
   
+  let board = Gameboard.getBoard();
+  
   const player1Name = document.querySelector("#player1");
   const player2Name = document.querySelector("#player2");
   const startBtn = document.querySelector("#startgame");
@@ -41,7 +45,6 @@ const GameState = (() => {
   const endScreen = document.querySelector(".displaywinner");
   const displayWinner = document.querySelector(".winner");
   const playAgainBtn = document.getElementById("playagain");
-  const startNewBtn = document.getElementById("startnew");
 
   const WINNING_COMBINATIONS = [
     [0, 1, 2], [3, 4, 5], [6, 7, 8],
@@ -56,6 +59,14 @@ const GameState = (() => {
     player1Name.value = "";
     player2Name.value = "";
   },);
+
+  playAgainBtn.addEventListener("click", () => {
+    Gameboard.resetBoard();
+    board = Gameboard.getBoard();
+    gameIsOver = false;
+    cells.forEach(cell => cell.textContent = "");
+    endScreen.style.display = "none";
+  });
 
   const startGame = () => {
     currentPlayer = playerOne;
@@ -79,7 +90,6 @@ const GameState = (() => {
   };
 
   const checkWinner = () => {
-    const board = Gameboard.getBoard();
     for (let combination of WINNING_COMBINATIONS) {
       const [a, b, c] = combination;
       if (board[a] && board[a] === board[b] && board[a] === board[c]) {
